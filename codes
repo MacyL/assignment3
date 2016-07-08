@@ -1,7 +1,14 @@
 # R 
 #install.packages("tm")
 library(tm)
-data<-readLines('./pos/cv000_29590.txt')
+#postive tokenize
+my.dir<-"/home/admin1/Documents/Machine_learning/txt_sentoken/pos"
+my.token.list<-list()
+files <- list.files(my.dir) 
+for(i in 1:length(files)){temp<-readLines(paste(my.dir,"/",files[i],sep=''))
+temp.token<-preprocess(temp)
+my.token.list[length(my.token.list)+1]<-list('token'=temp.token)
+}
 #unigram preprocess, require tm package
 preprocess<-function(x){
   my.data<-x
