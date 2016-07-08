@@ -30,3 +30,6 @@ preprocess<-function(x){
   data.table<-sort(data.table, decreasing = TRUE)
   return(data.table)
 }
+#select first 100 tokens from each file
+#positive
+positive.100<-lapply(my.token.list, function(x) x[1:100])
