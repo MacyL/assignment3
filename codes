@@ -1,0 +1,17 @@
+# R 
+#install.packages("tm")
+library(tm)
+data<-readLines('./pos/cv000_29590.txt')
+#unigram preprocess, require tm package
+preprocess<-function(x){
+  my.data<-x
+  data.remove.punct<-removePunctuation(my.data,preserve_intra_word_dashes = TRUE)
+  data.remove.punct.num<-gsub('[0-9]+','', data.remove.punct)
+  data.split<-strsplit(data.remove.punct.num,' ')
+  data.split.unlist<-unlist(data.split)
+  data.split.unlist<-data.split.unlist[data.split.unlist != '']
+  data.table<-table(data.split.unlist)
+  data.table<-data.table/sum(data.table)
+  data.table<-sort(data.table, decreasing = TRUE)
+  return(data.table)
+}
