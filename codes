@@ -48,3 +48,6 @@ colnames.n100<-unlist(colnames.n100) # the length is 99600
 p100n100.vocabl<-c(colnames.p100,colnames.n100) #the length is 199400
 vocab.2000<-names(head(sort(table(p100n100.vocabl),decreasing = TRUE),2000))
 # and save the vacab.2000 as a R file "vocab2000"
+fit<-glm(type~.,family = binomial(link = "logit"), data=model.2000)
+# I have realized that I should lemmatize the token list. then I might get a better result.
+# But how should I do it? and what about bigram?
