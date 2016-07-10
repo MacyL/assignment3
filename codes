@@ -30,6 +30,21 @@ preprocess<-function(x){
   data.table<-sort(data.table, decreasing = TRUE)
   return(data.table)
 }
-#select first 100 tokens from each file
+#select first 100 tokens from each file, just for testing the full model
+# the strategy is to cut down as much words as possible, so select first 100 tokens from each file
+# and then combine together and further to select first 2000 most common words.  
 #positive
 positive.100<-lapply(my.token.list, function(x) x[1:100])
+positive.100.dataframe<-lapply(positive.100, function(x) t(as.data.frame(x)))
+#negative
+negative.100<-lapply(my.token.list.neg, function(x) x[1:100])
+negative.100.dataframe<-lapply(negative.100, function(x) t(as.data.frame(x)))
+#generate token list 
+colnames.p100<-lapply(positive.100.dataframe, function(x) colnames(x))
+colnames.p100<-unlist(colnames.p100)# the length is 99800
+colnames.n100<-lapply(negative.100.dataframe, function(x) colnames(x))
+colnames.n100<-unlist(colnames.n100) # the length is 99600
+#generate first 2000 most common words
+p100n100.vocabl<-c(colnames.p100,colnames.n100) #the length is 199400
+vocab.2000<-names(head(sort(table(p100n100.vocabl),decreasing = TRUE),2000))
+# and save the vacab.2000 as a R file "vocab2000"
