@@ -1,7 +1,7 @@
 # assignment3
 This file is for solving my Machine Learning assignment3.
-I will mainly apply R to solve the tasks. However, at certain points, I might switch to Python. 
-The code file, including R command histroy and all the in-house function. 
-positive_token_list_complete : unigram, positive comments. 
-And there will be a PDF for my answers. 
-Anyway, enjoy! 
+python_July_16.py : This is the python code for produce unigram and bigram list. 
+                    python3 python_July_16.py can run this code. 
+                    The output will be every file's unigram and bigram. 
+                    Also output a file 'vocab.txt' provides the list of unigram and bigram with the count.
+                    
